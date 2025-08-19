@@ -27,7 +27,7 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               {/* View Resume Button */}
              <Button asChild size="lg" className="bg-primary hover:bg-primary-hover shadow-custom-lg group">
-  <a href="/resume.pdf" download="Deepan_Resume.pdf">
+  <a href="/resume.pdf" download="resume.pdf">
     <Download className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
     View Resume
   </a>
