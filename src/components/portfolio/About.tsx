@@ -6,7 +6,7 @@ const About = () => {
     {
       degree: "B.Tech Information Technology",
       institution: "KLN College of Engineering",
-      score: "CGPA 8.35",
+      score: "CGPA 8.36",
       icon: <GraduationCap className="w-6 h-6" />
     },
     {
@@ -38,7 +38,7 @@ const About = () => {
           <div className="space-y-8 animate-slide-up">
             <div className="prose prose-lg max-w-none">
               <p className="text-text-secondary leading-relaxed text-lg">
-                I'm a 3rd-year B.Tech IT student with hands-on experience in Machine Learning, 
+                I'm a 4th-year B.Tech IT student with hands-on experience in Machine Learning, 
                 Deep Learning, and AI-powered applications. I've worked on projects ranging from 
                 healthcare AI to traffic management systems and I love turning complex data into 
                 smart, real-world solutions.
