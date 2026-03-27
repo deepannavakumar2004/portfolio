@@ -6,7 +6,7 @@ const About = () => {
     {
       degree: "B.Tech Information Technology",
       institution: "KLN College of Engineering",
-      score: "CGPA 8.36",
+      score: "CGPA 8.24",
       icon: <GraduationCap className="w-6 h-6" />
     },
     {

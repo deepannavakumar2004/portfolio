@@ -3,154 +3,127 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
 
-// Import project images
-import sentimentAnalysisImg from "@/assets/sentiment-analysis-project.jpg";
-import fruitDetectionImg from "@/assets/fruit-detection-project.jpg";
-import cropFertilizerImg from "@/assets/crop-fertilizer-project.jpg";
-import emotionDetectionImg from "@/assets/emotion-detection-project.jpg";
+// Import images
 import trafficSystemImg from "@/assets/traffic-system-project.jpg";
+import foodSystemImg from "@/assets/food insecurity.png"; // replace if you have correct image
+import deepfakeImg from "@/assets/deepfake.jpg"; // replace if needed
+
+import sentimentAnalysisImg from "@/assets/sentimental analysis.png";
+
 
 const Projects = () => {
-  const projects = [
-    {
-      title: "AI-Powered Sentiment Analysis using NLP",
-      description:
-        "Advanced sentiment analysis system using LSTM networks, Word2Vec embeddings, and TF-IDF with integrated chatbot functionality for real-time text analysis.",
-      image: sentimentAnalysisImg,
-      technologies: ["Python", "LSTM", "Word2Vec", "TF-IDF", "NLP", "Chatbot"],
-      category: "Natural Language Processing",
-      repoLink: "https://github.com/deepannavakumar2004/sentiment-analysis",
-      demoLink: "https://deepan-sentiment-demo.netlify.app"
-    },
-    {
-      title: "Rotten Fruit Detection using CNNs & OpenCV",
-      description:
-        "Computer vision system that accurately detects and classifies rotten fruits using Convolutional Neural Networks and OpenCV for real-time image processing.",
-      image: fruitDetectionImg,
-      technologies: ["Python", "CNNs", "OpenCV", "Computer Vision", "Image Processing"],
-      category: "Computer Vision",
-      repoLink: "https://github.com/deepannavakumar2004/rotten-fruit-detection",
-      demoLink: "#"
-    },
-    {
-      title: "Crop & Fertilizer Detection",
-      description:
-        "Smart agriculture solution using Random Forest and SVM algorithms with a Streamlit web interface for crop analysis and fertilizer recommendations.",
-      image: cropFertilizerImg,
-      technologies: ["Python", "Random Forest", "SVM", "Streamlit", "Agriculture AI"],
-      category: "Agricultural AI",
-      repoLink: "https://github.com/deepannavakumar2004/crop-fertilizer-detection",
-      demoLink: "#"
-    },
-    {
-      title: "Real-Time Emotion Detection",
-      description:
-        "CNN-based facial emotion recognition system using OpenCV for real-time detection and classification of human emotions with high accuracy.",
-      image: emotionDetectionImg,
-      technologies: ["Python", "CNNs", "OpenCV", "Facial Recognition", "Real-time Processing"],
-      category: "Computer Vision",
-      repoLink: "https://github.com/deepannavakumar2004/emotion-detection",
-      demoLink: "#"
-    },
+  const topProjects = [
     {
       title: "AI-Based Traffic Management System",
       description:
-        "Intelligent traffic management solution combining LSTM networks, ARIMA models, and computer vision for traffic flow optimization and prediction.",
+        "Smart traffic signal control system using YOLOv8 and Streamlit for real-time vehicle detection, congestion analysis, and emergency prioritization.",
       image: trafficSystemImg,
-      technologies: ["Python", "LSTM", "ARIMA", "Computer Vision", "Traffic Analysis"],
+      technologies: ["Python", "YOLOv8", "Streamlit", "Computer Vision"],
       category: "Smart Cities",
-      repoLink: "https://github.com/deepannavakumar2004/traffic-management-system",
+      repoLink: "https://github.com/deepannavakumar2004/traffic_density_detection",
+      demoLink: "https://trafficdensitydetection.streamlit.app/"
+    },
+    {
+      title: "Food Insecurity Risk & Trust Estimation System",
+      description:
+        "AI system for predicting food insecurity and ensuring fair aid distribution using ML models, clustering, and real-time tracking.",
+      image: foodSystemImg,
+      technologies: ["Python", "Machine Learning", "Streamlit", "Clustering"],
+      category: "Social Impact AI",
+      repoLink: "https://github.com/deepannavakumar2004/foodinsecuritypsnahackathon",
+      demoLink: "#"
+    },
+    {
+      title: "Deep Fake Detection",
+      description:
+        "Deep learning model to detect manipulated media with high accuracy, addressing misinformation challenges.",
+      image: deepfakeImg,
+      technologies: ["Python", "Deep Learning", "CNN", "Computer Vision"],
+      category: "AI Security",
+      repoLink: "https://github.com/deepannavakumar2004/deepfakedetectionusingcnn"
+    }
+  ];
+
+  const otherProjects = [
+    {
+      title: "Sentimental Analysis using NLP",
+      description:
+        "Sentimetal analysis using NLP",
+      image: sentimentAnalysisImg,
+      technologies: ["Python","Tf-Idf" , "NLP"],
+      category: "NLP",
+      repoLink: "https://github.com/deepannavakumar2004/sentimentalanalysisusingnlp",
       demoLink: "#"
     }
   ];
 
+  const renderProjects = (projects: any[]) =>
+    projects.map((project, index) => (
+      <Card
+        key={index}
+        className="overflow-hidden hover-lift shadow-custom-lg border-0 bg-surface-elevated group"
+      >
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-48 object-cover"
+        />
+
+        <div className="p-6 space-y-4">
+          <h3 className="text-xl font-bold">{project.title}</h3>
+          <p className="text-sm text-text-secondary">{project.description}</p>
+
+          <div className="flex flex-wrap gap-2">
+            {project.technologies.map((tech: string, i: number) => (
+              <Badge key={i}>{tech}</Badge>
+            ))}
+          </div>
+
+          <div className="flex gap-3">
+            <Button asChild size="sm" className="flex-1">
+              <a href={project.repoLink} target="_blank">
+                <Github className="w-4 h-4 mr-2" />
+                Code
+              </a>
+            </Button>
+
+            {project.demoLink && project.demoLink !== "#" && (
+  <Button asChild size="sm" variant="outline" className="flex-1">
+    <a href={project.demoLink} target="_blank">
+      <ExternalLink className="w-4 h-4 mr-2" />
+      Demo
+    </a>
+  </Button>
+)}
+          </div>
+        </div>
+      </Card>
+    ));
+
   return (
     <section id="projects" className="py-20 px-4">
       <div className="container mx-auto max-w-7xl">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-            Featured <span className="gradient-text">Projects</span>
-          </h2>
-          <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full"></div>
-          <p className="text-text-muted text-lg mt-6 max-w-2xl mx-auto">
-            Innovative AI/ML solutions addressing real-world challenges across various domains
-          </p>
+
+        {/* Top Projects */}
+        <h2 className="text-3xl font-bold mb-6 text-center">
+          🔥 Featured Projects
+        </h2>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {renderProjects(topProjects)}
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <Card 
-              key={index}
-              className="overflow-hidden hover-lift shadow-custom-lg border-0 bg-surface-elevated group animate-slide-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="relative overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute top-4 left-4">
-                  <Badge className="bg-black/70 text-white border-0 backdrop-blur-sm">
-                    {project.category}
-                  </Badge>
-                </div>
-              </div>
+        {/* Other Projects */}
+        <h2 className="text-3xl font-bold mb-6 text-center">
+          🚀 Other Projects
+        </h2>
 
-              <div className="p-6 space-y-4">
-                <div className="space-y-3">
-                  <h3 className="text-xl font-bold text-text-primary line-clamp-2 group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-text-secondary text-sm leading-relaxed line-clamp-3">
-                    {project.description}
-                  </p>
-                </div>
+        <div className="flex justify-center">
+  <div className="w-full md:w-1/2 lg:w-1/3">
+    {renderProjects(otherProjects)}
+  </div>
+</div>
 
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.slice(0, 4).map((tech, techIndex) => (
-                    <Badge
-                      key={techIndex}
-                      variant="secondary"
-                      className="text-xs px-2 py-1 bg-gradient-subtle hover:bg-gradient-primary hover:text-white transition-all duration-300"
-                    >
-                      {tech}
-                    </Badge>
-                  ))}
-                  {project.technologies.length > 4 && (
-                    <Badge variant="secondary" className="text-xs px-2 py-1 bg-muted">
-                      +{project.technologies.length - 4} more
-                    </Badge>
-                  )}
-                </div>
-
-                <div className="flex gap-3 pt-2">
-                  <Button 
-                    asChild
-                    size="sm" 
-                    className="flex-1 bg-primary hover:bg-primary-hover text-xs"
-                  >
-                    <a href={project.repoLink} target="_blank" rel="noopener noreferrer">
-                      <Github className="w-4 h-4 mr-2" />
-                      Code
-                    </a>
-                  </Button>
-                  <Button 
-                    asChild
-                    size="sm" 
-                    variant="outline"
-                    className="flex-1 border-primary text-primary hover:bg-primary hover:text-white text-xs"
-                  >
-                    <a href={project.demoLink} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      Demo
-                    </a>
-                  </Button>
-                </div>
-              </div>
-            </Card>
-          ))}
-        </div>
       </div>
     </section>
   );
